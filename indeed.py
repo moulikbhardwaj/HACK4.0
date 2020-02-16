@@ -6,7 +6,7 @@ import pickle
 import time
 import vars
 
-pr = webdriver.FirefoxProfile("/home/moulik/.mozilla/firefox/co19xs3p.default-release")
+pr = webdriver.FirefoxProfile("/home/roz3x/.mozilla/firefox/xk1uxyq9.Parrot")
 driver = webdriver.Firefox(pr)
 driver.maximize_window()
 driver.implicitly_wait(5)
