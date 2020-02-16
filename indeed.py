@@ -58,7 +58,10 @@ def main():
         i.click()
         
         #apply now
-        el = driver.find_element_by_xpath("//span[@class='indeed-apply-widget indeed-apply-button-container js-IndeedApplyWidget indeed-apply-status-not-applied']")
+        try:
+            el = driver.find_element_by_xpath("//span[@class='indeed-apply-widget indeed-apply-button-container js-IndeedApplyWidget indeed-apply-status-not-applied']")
+        except:
+            el = driver.find_element_by_xpath("//span[@class='indeed-apply-button-label']")
         el.click()
 
         #iframe switch
