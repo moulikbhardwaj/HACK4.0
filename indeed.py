@@ -20,6 +20,7 @@ def main():
 
     #check not logged in
     try:
+        # time.sleep(2)
         elem = driver.find_element_by_link_text("Sign in")
         elem.click()
         elem = driver.find_element_by_id("login-email-input")
@@ -31,12 +32,14 @@ def main():
         pass
 
     #search for backend intern
+    time.sleep(2)
     elem = driver.find_element_by_id("text-input-what")
     elem.send_keys("Frontend Developer")
     elem = driver.find_element_by_id("text-input-where")
     elem.clear()
     elem.send_keys(Keys.RETURN)
     try:
+        time.sleep(2)
         elem = driver.find_element_by_xpath("//a[contains(@title, 'Internship') ]")
         elem.click()
     except:
@@ -46,11 +49,11 @@ def main():
         elem.click()
     
     #check for popups
-    time.sleep(2)
     th = threading.Thread(target=popChk)
     th.start()
 
     #search for indeed resume applicable jobs
+    time.sleep(2)
     elem = driver.find_elements_by_xpath("//div[@class='jobsearch-SerpJobCard unifiedRow row result clickcard']//span[@class='iaLabel iaIconActive']")
             
     for i in elem[4:]:
@@ -59,21 +62,24 @@ def main():
         
         #apply now
         try:
+            time.sleep(2)
             el = driver.find_element_by_xpath("//span[@class='indeed-apply-widget indeed-apply-button-container js-IndeedApplyWidget indeed-apply-status-not-applied']")
         except:
             el = driver.find_element_by_xpath("//span[@class='indeed-apply-button-label']")
         el.click()
+        time.sleep(2)
 
         #iframe switch
+        time.sleep(2)
         el = driver.find_element_by_xpath("//iframe[contains(@name, 'indeed-ia')]")        
         driver.switch_to.frame(el)
         el = driver.find_element_by_xpath("//iframe[@title='Apply Now']")        
         driver.switch_to.frame(el)
         time.sleep(5)
         #phone number
-        el = driver.find_element_by_xpath('//input[@id="input-applicant.phoneNumber"]')
-        el.clear()
-        el.send_keys(vars.phone)
+        # el = driver.find_element_by_xpath('//input[@id="input-applicant.phoneNumber"]')
+        # el.clear()
+        # el.send_keys(vars.phone)
 
         #add cover letter
         try:
@@ -106,8 +112,8 @@ def main():
 
         #click continue
         el = driver.find_element_by_xpath("//button[@id='form-action-continue']")
-        el.click()
         time.sleep(1)
+        el.click()
 
         #regex here
         el = driver.find_elements_by_xpath("//div[@class='ia-ScreenerQuestions']")
@@ -156,6 +162,7 @@ def question_solver(elem):
         for key in vars.exp:
             if text.find(key.lower())!=-1:
                 print(key, vars.exp[key])
+                ip.clear()
                 ip.send_keys(vars.exp[key])
                 flag = 0
                 break

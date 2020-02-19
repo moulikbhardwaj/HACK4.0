@@ -16,7 +16,7 @@ def linkedin():
 
     #finding the search button 
     elem = driver.find_element_by_xpath("//input[@class='search-global-typeahead__input always-show-placeholder']")
-    elem.send_keys("Backend Developer")
+    elem.send_keys(".net")
     elem.send_keys(Keys.RETURN) 
     # elem = driver.find_elements_by_xpath("//h3[@class='search-result__title t-16 t-black t-bold']")
     time.sleep(3)
@@ -36,10 +36,16 @@ def linkedin():
             driver.find_element_by_xpath("//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']").click()
             try:
                 driver.find_element_by_xpath('//span[@class="artdeco-button__text" and text() = "Submit application"]').click()
-                form = driver.find_element_by_xpath("//div[@class='artdeco-modal artdeco-modal--layer-default post-apply-modal']")
+                try:
+                    driver.find_element_by_xpath("//span[@class='artdeco-button__text' and text() = 'Not now']").click()
+                except:
+                    pass
                 time.sleep(1)
-                form.find_element_by_xpath("//button[@class='artdeco-modal__dismiss artdeco-button artdeco-button--circle artdeco-button--muted artdeco-button--2 artdeco-button--tertiary ember-view']").click()
+                
             except:
+                driver.find_element_by_xpath("//button[@class='artdeco-modal__dismiss artdeco-button artdeco-button--circle artdeco-button--muted artdeco-button--2 artdeco-button--tertiary ember-view']").click()
+                driver.find_element_by_xpath("//span[@class='artdeco-button__text' and text() = 'Discard']").click()
+                
                 pass
             # try:
 
